@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestige Nameplates - Custom Metal & Light Board Name Signs</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #b8860b;
+            --secondary-color: #333333;
+            --accent-color: #c0c0c0;
+            --light-color: #f8f8f8;
+            --dark-color: #222222;
+            --success-color: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/65dd4100-316d-420a-ad71-60448e021e45.png') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            background-color: #daa520;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Search Section */
+        .search-section {
+            background-color: white;
+            padding: 2rem 0;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .search-container h2 {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            padding-left: 40px;
+        }
+
+        #search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 1rem auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+        }
+        
+        .product-image img {
+            max-height: 100%;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: var(--dark-color);
+        }
+
+        .product-type {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .product-actions .btn {
+            flex: 1;
+            padding: 0.6rem;
+            font-size: 0.8rem;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-methods {
+            margin-top: 1.5rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-method i {
+            margin-right: 1rem;
+            color: var(--primary-color);
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            color: var(--dark-color);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--secondary-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-color);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Scroll animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--dark-color);
+                padding: 1rem;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+            }
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">PRESTIGE<span>NAMEPLATES</span></div>
+            <div class="mobile-menu-btn">☰</div>
+            <nav>
+                <ul>
+                    <li class="dropdown">
+                        <a href="#products">Products ▼</a>
+                        <div class="dropdown-content">
+                            <a href="#steel">Steel</a>
+                            <a href="#gold">Gold</a>
+                            <a href="#light">Light Boards</a>
+                            <a href="#custom">Custom</a>
+                        </div>
+                    </li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Premium Custom Nameplates</h1>
+            <p>Elevate your space with our handcrafted steel, gold, and illuminated nameplates. Perfect for offices, homes, and special gifts.</p>
+            <a href="#products" class="btn">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <h2>Find Your Perfect Nameplate</h2>
+            <div class="search-box">
+                <div class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+                <input type="text" id="search-input" placeholder="Search by product name, material, or type...">
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Collection</h2>
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>Have questions about our products or want to discuss a custom order? Reach out to us through any of these channels:</p>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div>
+                            <strong>WhatsApp:</strong>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div>
+                            <strong>Email:</strong>
+                            <p>orders@prestigenameplates.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div>
+                            <strong>Phone:</strong>
+                            <p>+1 (555) 987-6543</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Prestige Nameplates. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">Pinterest</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product Data
+        const products = [
+            {
+                id: 1,
+                title: "Classic Stainless Steel Nameplate",
+                type: "Steel",
+                price: 49.99,
+                description: "Elegant stainless steel nameplate with polished finish and engraved text. Perfect for office doors and professional spaces.",
+                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e0126650-f265-430d-932a-39c22c291c34.png",
+                alt: "Polished stainless steel nameplate mounted on a wooden door with engraved black lettering"
+            },
+            {
+                id: 2,
+                title: "Luxury Gold-Plated Name Sign",
+                type: "Gold",
+                price: 129.99,
+                description: "Premium 24k gold-plated nameplate with deep etching for a luxurious, timeless appearance.",
+                image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/461a4931-f35f-47cd-be3c-74376cb79621.png",
+                alt: "Shiny gold nameplate with ornate border and elegant engraved lettering in dark finish"
+            },
+            {
+                id: 3,
+                title: "Modern LED Light Board Name",
+                type: "Light Board",
+                price: 89.99,
+                description: "Contemporary illuminated nameboard with energy-efficient LED lighting and customizable colors.",
+                image: "https://placehold.co/600x400",
+                alt: "Modern illuminated LED sign with glowing letters in a clean sans-serif font against a dark background"
+            },
+            {
+                id: 4,
+                title: "Brushed Steel Executive Plaque",
+                type: "Steel",
+                price: 59.99,
+                description: "Sophisticated brushed steel finish nameplate with dark enamel infill for high contrast.",
+                image: "https://placehold.co/600x400",
+                alt: "Brushed metal nameplate with black lettering mounted on a corporate office door"
+            },
+            {
+                id: 5,
+                title: "Rose Gold Desk Nameplate",
+                type: "Gold",
+                price: 79.99,
+                description: "Elegant rose gold finish nameplate for desks, crafted with precision engraving techniques.",
+                image: "https://placehold.co/600x400",
+                alt: "Rose gold colored nameplate with elegant script lettering on a wooden desk surface"
+            },
+            {
+                id: 6,
+                title: "Backlit Acrylic Sign Board",
+                type: "Light Board",
+                price: 109.99,
+                description: "Premium acrylic light board with edge-lit illumination and multiple color options.",
+                image: "https://placehold.co/600x400",
+                alt: "Modern backlit acrylic name sign with glowing blue letters in a contemporary office setting"
+            },
+            {
+                id: 7,
+                title: "Industrial Steel Name Tag",
+                type: "Steel",
+                price: 39.99,
+                description: "Rugged industrial-style steel nameplate with bold lettering for warehouses and workshops.",
+                image: "https://placehold.co/600x400",
+                alt: "Industrial metal nameplate with bold uppercase lettering on a brick wall background"
+            },
+            {
+                id: 8,
+                title: "Gold Leaf Engraved Plaque",
+                type: "Gold",
+                price: 149.99,
+                description: "Handcrafted plaque with genuine gold leaf inlay for a truly premium presentation.",
+                image: "https://placehold.co/600x400",
+                alt: "Traditional wooden plaque with gold leaf lettering and intricate border detailing"
+            },
+            {
+                id: 9,
+                title: "Color-Changing LED Sign",
+                type: "Light Board",
+                price: 119.99,
+                description: "Smart LED name board with remote-controlled color changing options and dimming function.",
+                image: "https://placehold.co/600x400",
+                alt: "Modern color-changing LED name sign displaying purple illumination in a dark room"
+            },
+            {
+                id: 10,
+                title: "Minimalist Steel Desk Plate",
+                type: "Steel",
+                price: 44.99,
+                description: "Clean, simple steel desk plate with crisp engraved lettering for a professional look.",
+                image: "https://placehold.co/600x400",
+                alt: "Thin minimalist stainless steel desk nameplate with sans-serif font on a glass desk"
+            },
+            {
+                id: 11,
+                title: "Antique Brass Nameplate",
+                type: "Gold",
+                price: 69.99,
+                description: "Vintage-style brass nameplate with aged patina finish for traditional decor.",
+                image: "https://placehold.co/600x400",
+                alt: "Antique brass nameplate with ornate scrollwork and dark patina in the recessed areas"
+            },
+            {
+                id: 12,
+                title: "Neon Effect Light Sign",
+                type: "Light Board",
+                price: 139.99,
+                description: "Modern neon-style LED name sign that replicates the look of real glass neon tubing.",
+                image: "https://placehold.co/600x400",
+                alt: "Bright pink neon-style LED name sign with glowing script font against dark background"
+            },
+            {
+                id: 13,
+                title: "Matte Black Steel Plaque",
+                type: "Steel",
+                price: 54.99,
+                description: "Sleek matte black steel nameplate with contrasting metallic lettering.",
+                image: "https://placehold.co/600x400",
+                alt: "Matte black metal nameplate with silver lettering mounted on a white door"
+            },
+            {
+                id: 14,
+                title: "Gold and Black Executive Sign",
+                type: "Gold",
+                price: 99.99,
+                description: "Premium gold and black combo sign with rich lacquered finish for executive offices.",
+                image: "https://placehold.co/600x400",
+                alt: "Luxury gold and black nameplate with glossy finish displayed in an executive office setting"
+            },
+            {
+                id: 15,
+                title: "Marquee Letter Light Board",
+                type: "Light Board",
+                price: 129.99,
+                description: "Vintage-inspired marquee letter lighting with individual bulb-style LEDs for each character.",
+                image: "https://placehold.co/600x400",
+                alt: "Retro-style marquee letter sign with exposed bulb lighting spelling out a name on a brick wall"
+            },
+            {
+                id: 16,
+                title: "Satin Nickel Nameplate",
+                type: "Steel",
+                price: 47.99,
+                description: "Elegant satin nickel finish nameplate with subtle sheen for professional environments.",
+                image: "https://placehold.co/600x400",
+                alt: "Satin nickel metal nameplate with subtle reflectivity and engraved black lettering"
+            },
+            {
+                id: 17,
+                title: "Gold Engraved Door Plaque",
+                type: "Gold",
+                price: 89.99,
+                description: "Luxury gold-toned door plaque with deep 3D engraving for prominent display.",
+                image: "https://placehold.co/600x400",
+                alt: "Gold-toned door plaque with 3D engraved lettering casting subtle shadows"
+            },
+            {
+                id: 18,
+                title: "Smart RGB LED Name Sign",
+                type: "Light Board",
+                price: 149.99,
+                description: "Advanced RGB LED name sign with smartphone app control for colors and lighting effects.",
+                image: "https://placehold.co/600x400",
+                alt: "Modern RGB LED name sign displaying multi-color gradient effect in a dark room"
+            },
+            {
+                id: 19,
+                title: "Mirror Polish Steel Sign",
+                type: "Steel",
+                price: 64.99,
+                description: "High-gloss mirror polished steel nameplate that reflects light beautifully.",
+                image: "https://placehold.co/600x400",
+                alt: "Mirror-finished steel nameplate reflecting surroundings with crisp engraved lettering"
+            },
+            {
+                id: 20,
+                title: "Gilded Edge Nameplate",
+                type: "Gold",
+                price: 109.99,
+                description: "Elegant nameplate with gold gilt edges and hand-painted lettering for a bespoke look.",
+                image: "https://placehold.co/600x400",
+                alt: "Black nameplate with gold gilded edges and hand-painted gold lettering in classic font"
+            },
+            {
+                id: 21,
+                title: "Crystal Acrylic Light Sign",
+                type: "Light Board",
+                price: 119.99,
+                description: "Premium clear acrylic sign with internal LED illumination for a modern floating effect.",
+                image: "https://placehold.co/600x400",
+                alt: "Clear acrylic light sign with internal white LED illumination creating a floating text effect"
+            },
+            {
+                id: 22,
+                title: "Blackened Steel Nameplate",
+                type: "Steel",
+                price: 59.99,
+                description: "Artisanal blackened steel finish with hand-brushed textures for a unique look.",
+                image: "https://placehold.co/600x400",
+                alt: "Blackened steel nameplate with hand-brushed texture and gold foil lettering"
+            },
+            {
+                id: 23,
+                title: "Diamond-Cut Gold Sign",
+                type: "Gold",
+                price: 179.99,
+                description: "Ultra-luxury nameplate with diamond-cut gold plating for maximum reflectivity.",
+                image: "https://placehold.co/600x400",
+                alt: "High-end diamond-cut gold nameplate catching light at multiple angles with deep engraving"
+            },
+            {
+                id: 24,
+                title: "Frosted Glass LED Board",
+                type: "Light Board",
+                price: 139.99,
+                description: "Elegant frosted glass panel with edge-lit LED illumination for soft, diffused light.",
+                image: "https://placehold.co/600x400",
+                alt: "Frosted glass name sign with soft white LED backlighting creating a gentle glow effect"
+            },
+            {
+                id: 25,
+                title: "Bead-Blasted Steel Plaque",
+                type: "Steel",
+                price: 49.99,
+                description: "Durable bead-blasted steel finish for a matte, non-reflective professional appearance.",
+                image: "https://placehold.co/600x400",
+                alt: "Matte bead-blasted steel nameplate with crisp white lettering on a dark background"
+            },
+            {
+                id: 26,
+                title: "Gold Inlay Wooden Plaque",
+                type: "Gold",
+                price: 129.99,
+                description: "Premium hardwood plaque with deep routed channels filled with genuine gold leaf.",
+                image: "https://placehold.co/600x400",
+                alt: "Rich mahogany wooden plaque with gold leaf inlay in elegant calligraphic script"
+            },
+            {
+                id: 27,
+                title: "Floating LED Wall Sign",
+                type: "Light Board",
+                price: 159.99,
+                description: "Contemporary floating LED sign with hidden mounting for a sleek, modern look.",
+                image: "https://placehold.co/600x400",
+                alt: "Modern LED wall sign appearing to float off the wall with hidden mounting hardware"
+            },
+            {
+                id: 28,
+                title: "Perforated Metal Sign",
+                type: "Steel",
+                price: 54.99,
+                description: "Unique perforated steel design that allows backlighting to shine through cutouts.",
+                image: "https://placehold.co/600x400",
+                alt: "Industrial-style perforated metal nameplate with light shining through the cutout lettering"
+            },
+            {
+                id: 29,
+                title: "Two-Tone Gold Sign",
+                type: "Gold",
+                price: 99.99,
+                description: "Luxury two-tone gold plating with satin and polished finishes for contrast.",
+                image: "https://placehold.co/600x400",
+                alt: "Two-tone gold nameplate combining polished and brushed gold surfaces for visual contrast"
+            },
+            {
+                id: 30,
+                title: "LED Backlit Mirror Sign",
+                type: "Light Board",
+                price: 149.99,
+                description: "Mirrored surface with LED backlighting that creates a stunning halo effect.",
+                image: "https://placehold.co/600x400",
+                alt: "Mirrored name sign with glowing LED backlight creating a halo effect around the letters"
+            },
+            {
+                id: 31,
+                title: "Laser Cut Steel Nameplate",
+                type: "Steel",
+                price: 69.99,
+                description: "Precision laser-cut steel letters mounted on a contrasting backing panel.",
+                image: "https://placehold.co/600x400",
+                alt: "Modern laser-cut steel letters mounted on a dark wooden backing panel"
+            },
+            {
+                id: 32,
+                title: "Gold Wire Name Art",
+                type: "Gold",
+                price: 119.99,
+                description: "Artistic name display with gold wire forming elegant cursive letters in 3D space.",
+                image: "https://placehold.co/600x400",
+                alt: "Three-dimensional gold wire art forming cursive name letters with delicate craftsmanship"
+            },
+            {
+                id: 33,
+                title: "Interactive Touch Light Sign",
+                type: "Light Board",
+                price: 189.99,
+                description: "Smart LED sign with touch controls to change colors and lighting patterns.",
+                image: "https://placehold.co/600x400",
+                alt: "Interactive LED name sign responding to touch with changing colors and patterns"
+            },
+            {
+                id: 34,
+                title: "Corrugated Steel Sign",
+                type: "Steel",
+                price: 59.99,
+                description: "Unique corrugated steel surface that creates interesting light and shadow effects.",
+                image: "https://placehold.co/600x400",
+                alt: "Corrugated metal nameplate with shadows emphasizing the textured surface under lighting"
+            },
+            {
+                id: 35,
+                title: "Gold Embossed Leather",
+                type: "Gold",
+                price: 149.99,
+                description: "Luxury leather plaque with gold foil embossing for a sophisticated executive look.",
+                image: "https://placehold.co/600x400",
+                alt: "Rich brown leather nameplate with gold foil embossed lettering in a traditional office"
+            },
+            {
+                id: 36,
+                title: "Holographic LED Display",
+                type: "Light Board",
+                price: 199.99,
+                description: "Advanced holographic projection that creates floating 3D name images.",
+                image: "https://placehold.co/600x400",
+                alt: "Futuristic holographic name projection appearing to float in mid-air with blue light effects"
+            },
+            {
+                id: 37,
+                title: "Cast Iron Vintage Sign",
+                type: "Steel",
+                price: 89.99,
+                description: "Heavy-duty cast iron nameplate with vintage typography for rustic decor.",
+                image: "https://placehold.co/600x400",
+                alt: "Vintage cast iron nameplate with raised letters and aging patina on a brick wall"
+            },
+            {
+                id: 38,
+                title: "Gold-Dipped Ceramic Tile",
+                type: "Gold",
+                price: 139.99,
+                description: "Hand-glazed ceramic tile with gold-dipped edges for a unique artistic presentation.",
+                image: "https://placehold.co/600x400",
+                alt: "Handcrafted ceramic name tile with glossy glaze and gold-dipped edges in a modern home"
+            },
+            {
+                id: 39,
+                title: "Programmable LED Matrix",
+                type: "Light Board",
+                price: 179.99,
+                description: "Customizable LED matrix display that can show names, messages, and animations.",
+                image: "https://placehold.co/600x400",
+                alt: "Digital LED matrix display scrolling a name in bright white lights with animated effects"
+            },
+            {
+                id: 40,
+                title: "Stainless Steel Desk Block",
+                type: "Steel",
+                price: 74.99,
+                description: "Solid stainless steel cube with recessed name engraving for executive desks.",
+                image: "https://placehold.co/600x400",
+                alt: "Heavy stainless steel cube nameplate with sunken lettering on a polished executive desk"
+            },
+            {
+                id: 41,
+                title: "Gold-Filled Name Badge",
+                type: "Gold",
+                price: 59.99,
+                description: "Premium gold-filled name badge with pin back for professional attire.",
+                image: "https://placehold.co/600x400",
+                alt: "Gold name badge with black enamel lettering and secure pin back for suits or lab coats"
+            },
+            {
+                id: 42,
+                title: "Fiber Optic Light Sign",
+                type: "Light Board",
+                price: 159.99,
+                description: "Innovative fiber optic name display with hundreds of light points for soft glow.",
+                image: "https://placehold.co/600x400",
+                alt: "Fiber optic name sign with hundreds of tiny light points creating a soft glowing effect"
+            },
+            {
+                id: 43,
+                title: "Powder-Coated Steel Plate",
+                type: "Steel",
+                price: 64.99,
+                description: "Durable powder-coated steel in a wide range of color options for custom matching.",
+                image: "https://placehold.co/600x400",
+                alt: "Vibrant blue powder-coated steel nameplate with crisp white lettering in a modern office"
+            },
+            {
+                id: 44,
+                title: "Gold Mosaic Name Art",
+                type: "Gold",
+                price: 169.99,
+                description: "Artistic mosaic formed with gold tiles creating a name in decorative patterns.",
+                image: "https://placehold.co/600x400",
+                alt: "Decorative mosaic artwork forming a name with gold and glass tiles in intricate patterns"
+            },
+            {
+                id: 45,
+                title: "Neon Flex LED Sign",
+                type: "Light Board",
+                price: 129.99,
+                description: "Flexible LED neon-style tubing that can be shaped into custom name designs.",
+                image: "https://placehold.co/600x400",
+                alt: "Flexible LED neon tubing shaped into cursive name letters with authentic neon glow effect"
+            },
+            {
+                id: 46,
+                title: "Weatherproof Steel Sign",
+                type: "Steel",
+                price: 79.99,
+                description: "Outdoor-rated stainless steel nameplate with protective coating for longevity.",
+                image: "https://placehold.co/600x400",
+                alt: "Stainless steel nameplate mounted outdoors with weather-resistant finish and deep engraving"
+            },
+            {
+                id: 47,
+                title: "Gold Star Plaque",
+                type: "Gold",
+                price: 149.99,
+                description: "Prestige recognition plaque with gold star and engraved name inscription.",
+                image: "https://placehold.co/600x400",
+                alt: "Official-looking recognition plaque with gold star emblem and engraved recipient name"
+            },
+            {
+                id: 48,
+                title: "Projection Light Sign",
+                type: "Light Board",
+                price: 199.99,
+                description: "High-tech projection system that casts name onto any surface with adjustable size.",
+                image: "https://placehold.co/600x400",
+                alt: "Digital projection of a name displayed on a wall with clear bright letters from compact unit"
+            },
+            {
+                id: 49,
+                title: "Titanium Nameplate",
+                type: "Steel",
+                price: 149.99,
+                description: "Premium-grade titanium nameplate with exceptional durability and lightweight.",
+                image: "https://placehold.co/600x400",
+                alt: "High-end titanium nameplate with subtle metallic sheen and precision laser engraving"
+            },
+            {
+                id: 50,
+                title: "Gold Filigree Wall Art",
+                type: "Gold",
+                price: 189.99,
+                description: "Intricate gold filigree artwork that incorporates the name into a decorative wall piece.",
+                image: "https://placehold.co/600x400",
+                alt: "Ornate gold filigree wall art with name incorporated into elaborate scrollwork patterns"
+            }
+        ];
+
+        // Display all products initially
+        function displayProducts(productsToShow) {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+            
+            productsToShow.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.alt}" onerror="this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ad01ad80-d128-4e28-ac29-c2fa1cc81a37.png'">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <span class="product-type">${product.type}</span>
+                        <p class="product-price">$${product.price.toFixed(2)}</p>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="btn btn-outline">Details</button>
+                            <button class="btn" onclick="openWhatsApp('${product.title}')">Order via WhatsApp</button>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Search functionality
+        document.getElementById('search-input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredProducts = products.filter(product => 
+                product.title.toLowerCase().includes(searchTerm) || 
+                product.type.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm)
+            );
+            displayProducts(filteredProducts.length > 0 ? filteredProducts : products);
+        });
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send this data to a server
+            // For demo purposes, we'll just show an alert
+            alert(`Thank you, ${name}! Your message has been submitted. We'll contact you at ${email} soon.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // WhatsApp contact function
+        function openWhatsApp(productName) {
+            const whatsappNumber = "15551234567"; // Replace with actual number
+            const message = `Hi, I'm interested in ordering the ${productName}. Can you provide more details?`;
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Email contact function
+        function sendEmail(productName) {
+            const email = "orders@prestigenameplates.com";
+            const subject = `Inquiry about ${productName}`;
+            const body = "Hi,\n\nI'm interested in ordering this product. Please provide more information.\n\nThank you!";
+            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+        }
+
+        // Initialize the page with all products
+        displayProducts(products);
+        
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Scroll animations
+        function animateOnScroll() {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if(cardPosition < windowHeight - 100) {
+                    card.classList.add('visible');
+                }
+            });
+        }
+        
+        // Initial check
+        animateOnScroll();
+        
+        // Add scroll event listener
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
